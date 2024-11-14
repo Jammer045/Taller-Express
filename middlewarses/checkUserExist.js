@@ -1,4 +1,3 @@
-// middlewares/checkUserExists.js
 const User = require('../models/Usuarios');
 
 const checkUserExists = async (req, res, next) => {

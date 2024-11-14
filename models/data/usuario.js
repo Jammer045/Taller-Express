@@ -87,19 +87,19 @@ const users = [
 
 const seedUsers = async () => {
     try {
-        // Primero conectar a la base de datos
+      
         await connectDB();
         console.log('Conexión a la base de datos establecida');
 
-        // Limpiar la colección existente
+   
         await User.deleteMany({});
         console.log('Colección de usuarios limpiada');
 
-        // Insertar los nuevos usuarios
+   
         const insertedUsers = await User.insertMany(users);
         console.log(`${insertedUsers.length} usuarios insertados correctamente`);
 
-        // Mostrar los IDs de los usuarios creados
+      
         insertedUsers.forEach(user => {
             console.log(`Usuario: ${user.nombre}, ID: ${user._id}`);
         });
@@ -107,10 +107,9 @@ const seedUsers = async () => {
     } catch (error) {
         console.error('Error durante el seed:', error);
     } finally {
-        // Cerrar la conexión
+
         process.exit();
     }
 };
 
-// Ejecutar la función
 seedUsers();

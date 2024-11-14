@@ -16,7 +16,7 @@ const getAllPropiedades = async (req, res) => {
 
         const propiedades = await Propiedad.find(query)
             .populate('usuario', 'nombre correo')
-            .sort({ nombre: 1 }); // Ordenadas alfabéticamente por nombre
+            .sort({ nombre: 1 });
 
         res.json(propiedades);
     } catch (error) {

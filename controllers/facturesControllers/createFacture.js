@@ -5,7 +5,6 @@ const createFactura = async (req, res) => {
         const factura = new Factura(req.body);
         await factura.save();
         
-        // Populate para retornar los datos del usuario relacionado
         const facturaPopulada = await factura.populate('usuario', 'nombre correo');
         
         res.status(201).json({
