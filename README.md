@@ -8,3 +8,6 @@ dependencies":
 "mongoose"
 "morgan"
 "joi"
+"jsonwebtoken"
+"passport"
+"passport-jwt"

@@ -8,11 +8,13 @@ const updateUser = require('../controllers/usersControllers/updateUser');
 const deleteUser = require('../controllers/usersControllers/deleteUser');
 const validateUser = require('../middlewarses/validator');
 const checkUserExists = require('../middlewarses/checkUserExist');
+const verifyToken = require('../middlewarses/generateToken');
+const authenticate = require('../middlewarses/authPassport');
 
-router.post('/create', validateUser, checkUserExists, createUser);
-router.get('/Allusers', getAllUsers);
-router.get('/:id', getUserById);
-router.put('/:id', validateUser,updateUser);
-router.delete('/:id', deleteUser);
+router.post('/create', validateUser, checkUserExists, verifyToken, authenticate,createUser);
+router.get('/Allusers', verifyToken, authenticate,getAllUsers);
+router.get('/:id', verifyToken, authenticate, getUserById);
+router.put('/:id', validateUser, verifyToken, authenticate, updateUser);
+router.delete('/:id', verifyToken, authenticate, deleteUser);
 
 module.exports = router;

@@ -6,11 +6,13 @@ const getAllPropiedades = require('../controllers/porpertiesControllers/getAllPr
 const getPropiedadById = require('../controllers/porpertiesControllers/getPropertyById');
 const updatePropiedad = require('../controllers/porpertiesControllers/updateProperty');
 const deletePropiedad = require('../controllers/porpertiesControllers/deleteProperty');
+const verifyToken = require('../middlewarses/generateToken');
+const authenticate = require('../middlewarses/authPassport');
 
-router.post('/create', createPropiedad);
-router.get('/Allproperties', getAllPropiedades);
-router.get('/:id', getPropiedadById);
-router.put('/:id', updatePropiedad);
-router.delete('/:id', deletePropiedad);
+router.post('/create', verifyToken, authenticate, createPropiedad);
+router.get('/Allproperties', verifyToken, authenticate, getAllPropiedades);
+router.get('/:id', verifyToken, authenticate, getPropiedadById);
+router.put('/:id', verifyToken, authenticate, updatePropiedad);
+router.delete('/:id', verifyToken, authenticate, deletePropiedad);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const User = require('../../models/Usuarios');
+const jwt = require('jsonwebtoken');
 
 const sightInUser = async (req, res) => {
     try {
@@ -10,9 +11,20 @@ const sightInUser = async (req, res) => {
             { new: true }
         );
 
+        const token = jwt.sign(
+            { 
+                id: user._id,
+                email: user.correo
+            }, 
+            process.env.JWT_SECRET,
+            { expiresIn: '2h' }
+        );
+
         res.json({
-            msg: 'Usuario conectado exitosamente',
-            user
+            success: true,
+            message: 'Usuario conectado exitosamente, token valido',
+            user,
+            token
         });
     } catch (error) {
         res.status(500).json({ error: error.message });

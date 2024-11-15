@@ -13,6 +13,8 @@ const validatePassword = async (req, res, next) => {
            });
        }
 
+       if(isPasswordValid) {delete req.account.password;}
+
        next();
    } catch (error) {
        res.status(500).json({
