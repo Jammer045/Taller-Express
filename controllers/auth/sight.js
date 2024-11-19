@@ -1,7 +1,7 @@
 const User = require('../../models/Usuarios');
-const jwt = require('jsonwebtoken');
+const generateToken = require('../../middlewarses/generateToken');
 
-const sightInUser = async (req, res) => {
+const signInUser = async (req, res) => {
     try {
         const userInfo = req.account;
         
@@ -11,14 +11,7 @@ const sightInUser = async (req, res) => {
             { new: true }
         );
 
-        const token = jwt.sign(
-            { 
-                id: user._id,
-                email: user.correo
-            }, 
-            process.env.JWT_SECRET,
-            { expiresIn: '2h' }
-        );
+        const token = generateToken(user);
 
         res.json({
             success: true,
@@ -31,4 +24,4 @@ const sightInUser = async (req, res) => {
     }
 };
 
-module.exports = sightInUser;
+module.exports = signInUser;

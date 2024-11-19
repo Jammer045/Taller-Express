@@ -6,7 +6,7 @@ const getAllPropiedades = require('../controllers/porpertiesControllers/getAllPr
 const getPropiedadById = require('../controllers/porpertiesControllers/getPropertyById');
 const updatePropiedad = require('../controllers/porpertiesControllers/updateProperty');
 const deletePropiedad = require('../controllers/porpertiesControllers/deleteProperty');
-const verifyToken = require('../middlewarses/generateToken');
+const verifyToken = require('../middlewarses/valideToken');
 const authenticate = require('../middlewarses/authPassport');
 
 router.post('/create', verifyToken, authenticate, createPropiedad);

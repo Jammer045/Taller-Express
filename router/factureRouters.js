@@ -6,7 +6,7 @@ const getAllFacturas = require('../controllers/facturesControllers/getAllFacture
 const getFacturaById = require('../controllers/facturesControllers/getFactureById');
 const updateFactura = require('../controllers/facturesControllers/updateFacture');
 const deleteFactura = require('../controllers/facturesControllers/deleteFacture');
-const verifyToken = require('../middlewarses/generateToken');
+const verifyToken = require('../middlewarses/valideToken');
 const authenticate = require('../middlewarses/authPassport');
 
 router.post('/create', verifyToken, authenticate, createFactura);

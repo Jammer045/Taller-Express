@@ -1,27 +1,16 @@
 const jwt = require('jsonwebtoken');
 
-const verifyToken = (req, res, next) => {
-    try {
-        const token = req.header('Authorization')?.replace('Bearer ', '');
-
-        if (!token) {
-            return res.status(401).json({
-                success: false,
-                message: 'Acceso denegado. Token no proporcionado'
-            });
-        }
-
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
-        
-        req.user = verified;
-        
-        next();
-    } catch (error) {
-        res.status(401).json({
-            success: false,
-            message: 'Token inválido'
-        });
-    }
+const generateToken = (user) => {
+    const token = jwt.sign(
+        {
+            id: user._id,
+            email: user.correo
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: '2h' }
+    );
+    
+    return token;
 };
 
-module.exports = verifyToken;
+module.exports = generateToken;
