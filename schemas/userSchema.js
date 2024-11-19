@@ -19,10 +19,6 @@ const userSchema = new mongoose.Schema({
         required: [true, 'La dirección es obligatoria'],
         trim: true
     },
-    telefono: {
-        type: Number,
-        required: [true, 'El teléfono es obligatorio']
-    },
     password: {
         type: String,
         required: [true, 'La contraseña es obligatoria'],
